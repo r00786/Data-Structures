@@ -69,12 +69,30 @@ class LinkedList {
         return currentNode;
 
     }
+    reverse(){
+        if(!this.head.next){
+            return this.head
+        }
+        let first = this.head;
+        let second =this.head.next;
+        this.tail=this.head;
+        while(second){
+            let temp=second.next;
+            second.next=first;
+            first=second;
+            second=temp;
+        }
+        this.head.next=null;
+        this.head=first;
+        return this.printList();
+    }
+   
 
 }
 const linkedList = new LinkedList(10)
 linkedList.prepend(20)
 linkedList.insert(0, 99);
 linkedList.insert(1, 88);
-linkedList.delete(0);
-linkedList.delete(0);
 linkedList.printList().forEach(ele=> console.log(ele))
+console.log("---")
+linkedList.reverse().forEach(ele=> console.log(ele))
